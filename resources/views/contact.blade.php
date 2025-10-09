@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Contact')
+@section('title', '$title')
 
 @section('content')
   <h1>Let’s Get in Touch (aka Connect!)</h1>
@@ -8,9 +8,9 @@
     Don’t be shy — I would love to hear from you! Here are a few ways to reach out to me:
   </p>
   <ul>
-    <li><strong>Email:</strong> Akishamajok@gmail.com</li>
-    <li><strong>Phone:</strong> +62 82241989401</li>
-    <li><strong>Location:</strong> Somewhere between coffee and code ☕💻</li>
+    <li><strong>Email:</strong> {{$email}}</li>
+    <li><strong>Phone:</strong>{{$phone}}</li>
+    <li><strong>address>:</strong> {{$address}}</li>
   </ul>
 
   <p>
