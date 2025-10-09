@@ -1,5 +1,5 @@
 <?php
-
+use App\models\news;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,22 +39,18 @@ Route::get('/contact', function () {
     ]);
 });
 Route::get('/News', function () {
-    $data_news = [
-        [
-            "title" => "Laravel Project Launch",
-            "author" => "syntax fairy",
-            "content" => "After 3 hours of debugging, the bug waved a white flag.peace restored to localhost!",
-            "date" => "October 9, 2025",
-        ],
-        [
-            "title" => "Coding Progress Update",
-            "author" => "Debug queen",
-            "content" => "Another evening spent fixing one missing semicolon...but worth it for that sweet'it finally worked' moment!",
-            "date" => "October 9, 2025",
-        ],
-    ];
-
-    return view('News', ['data_news' => $data_news]);
+    
+    return view('news',[
+        "title"=> "news",
+        "newss"=>news::collectdata(),
+    ]);
+});
+Route::get('/News/{slug}', function ($slugp) {
+    
+    return view('singlenews',[
+        "title"=> "news",
+        "new_news"=>news::finddata($slugp),
+    ]);
 });
 
 

@@ -5,11 +5,16 @@
 @section('content')
     <h1>News Corner</h1>
 
-    @foreach ($data_news as $news_item)
-        <h2>{{ $news_item['title'] }}</h2>
-        <p>{{ $news_item['content'] }}</p>
-        <p>Author: {{ $news_item['author'] }}</p>
-        <p>Date: {{ $news_item['date'] }}</p>
+    @foreach ($newss as $news)
+    <article class="mt-5">
+      <a href="/news/{{$news['slug']}}">
+        <h2>{{ $news['title'] }}</h2>
+</a>
+        <p>{{ $news['content'] }}</p>
+        <p>Author: {{ $news['author'] }}</p>
+        <p>Date: {{ $news['date'] }}</p>
+</article>
+
 
     <p>Welcome to the news corner! This is where I will share updates, projects, and stories.</p>
 
@@ -23,3 +28,4 @@
 </p>
 
 @endforeach
+@endsection
