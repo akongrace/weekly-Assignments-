@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ $title }}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MyWebsite</h1>
+    <nav>
+      <ul>
+        <li><a href="/">home</a></li>
+        <li><a href="/news">news</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/student">Student</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  @yield('content')
+
+  <footer>
+    <p>&copy; 2025 MyWebsite. All rights reserved.</p>
+  </footer>
+</body>
+</html>

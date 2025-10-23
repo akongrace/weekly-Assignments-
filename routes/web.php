@@ -1,6 +1,7 @@
 <?php
 use App\models\news;
 use Illuminate\Support\Facades\Route;
+use APP\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home',[
-        "title"=>'home',
+        "title"=>'Home',
         "welcome_message"=>"welcome to my space on the web"
 
     ]);
@@ -38,21 +39,9 @@ Route::get('/contact', function () {
         'phone'=>'089944887766',
     ]);
 });
-Route::get('/News', function () {
+Route::get('/news', [newsController::class, 'index']);
+Route::get('/news/{slug}', [newsController::class, 'showdata']);
     
-    return view('news',[
-        "title"=> "news",
-        "newss"=>news::collectdata(),
-    ]);
-});
-Route::get('/News/{slug}', function ($slugp) {
-    
-    return view('singlenews',[
-        "title"=> "news",
-        "new_news"=>news::finddata($slugp),
-    ]);
-});
-
 
 Route::get('/welcome', function () {
     return view('welcome',[
