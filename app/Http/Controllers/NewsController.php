@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Requests;
 use Illuminate\Routing\Controller ;
+use App\Models\News;
 
 class NewsController extends Controller 
 {
@@ -11,7 +12,7 @@ class NewsController extends Controller
     {
         return view('news',[
             "title" => "news",
-            "newslist"=> news::getdata(),
+            "newss"=> news::collectdata(),
         ]);
     }
     public function showdata($slug)

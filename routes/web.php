@@ -1,18 +1,9 @@
 <?php
 use App\models\news;
 use Illuminate\Support\Facades\Route;
-use APP\Http\Controllers\NewsController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\StudentController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('home',[
@@ -41,6 +32,10 @@ Route::get('/contact', function () {
 });
 Route::get('/news', [newsController::class, 'index']);
 Route::get('/news/{slug}', [newsController::class, 'showdata']);
+
+
+Route::get('/student', [StudentController::class, 'index'])->name('student');
+
     
 
 Route::get('/welcome', function () {
@@ -52,3 +47,8 @@ Route::get('/welcome', function () {
 
     ]);
 }); 
+Route::get('/student', [StudentController::class, 'index'] )->name('student');
+
+Route::get('/addstudent', [StudentController::class, 'addstudent'] )->name('addstudent');
+
+Route::post('/insertdata', [StudentController::class, 'insertdata'] )->name('insertdata');
