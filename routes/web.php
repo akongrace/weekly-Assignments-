@@ -41,12 +41,13 @@ Route::get('/addstudent', [StudentController::class, 'addstudent'])->name('addst
 Route::post('/insertdata', [StudentController::class, 'insertdata'])->name('insertdata');
 Route::get('/editstudent/{id}', [StudentController::class, 'edit'])->name('editstudent');
 Route::post('/updatedata/{id}', [StudentController::class, 'update'])->name('updatedata');
-Route::get('/deletestudent/{id}', [StudentController::class, 'delete'])->name('deletestudent');
+Route::get('/deletedata/{id}', [StudentController::class, 'delete'])->name('deletedata');
+
 
 Route::get('/welcome', function () {
     return view('welcome', [
         "title" => "welcome",
-        "name" => "MJ",
+        "name" => "Musa",
         "age" => "28",
         "hobbies" => ["reading","football","modelling","travelling"]
     ]);

@@ -16,7 +16,7 @@
         </div><br>
         <div class="mb-3">
             <label for="prodi" class="form-label">Study program</label>
-            <input type="text" name="Major" id="Major" placeholder="Study program " class="form-control">
+            <input type="text" name="study program" id="study program" placeholder="Study program " class="form-control">
         </div><br>
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>

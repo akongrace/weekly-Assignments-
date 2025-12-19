@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container mt-5">
-    <h2 class="text-center mb-4">Edit Student</h2>
+    <h2 class="text-center mb-4">Edit Student</h2><br>
 
     <a href="{{ route('students.index') }}" class="btn btn-secondary mb-3">← Back</a>
 
@@ -22,43 +22,43 @@
         @method('PUT')
 
         <div class="mb-3">
-            <label class="form-label">No</label>
+            <label class="form-label">No</label><br>
             <input type="text" name="no" class="form-control"
                    value="{{ $student->no }}" required>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Name</label>
+            <label class="form-label">Name</label><br>
             <input type="text" name="name" class="form-control"
                    value="{{ $student->name }}" required>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">NIM</label>
+            <label class="form-label">NIM</label><br>
             <input type="text" name="nim" class="form-control"
                    value="{{ $student->nim }}" required>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Major</label>
+            <label class="form-label">Major</label><br>
             <input type="text" name="major" class="form-control"
                    value="{{ $student->major }}" required>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Email</label>
+            <label class="form-label">Email</label><br>
             <input type="email" name="email" class="form-control"
                    value="{{ $student->email }}" required>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">No. HP</label>
+            <label class="form-label">No. HP</label><br>
             <input type="text" name="no_hp" class="form-control"
                    value="{{ $student->no_hp }}" required>
         </div>
 
         <button type="submit" class="btn btn-primary w-100">Update</button>
-    </form>
+    </form><br>
 </div>
 
 @endsection

@@ -13,9 +13,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('nim')->unique();
-            $table->string('major');
+            $table->string('studey_program');
             $table->string('email')->unique();
-            $table->string('no_hp');
+            $table->string('no_hp') ->nullable();
             $table->timestamps();
         });
     }
@@ -25,4 +25,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('users');
     }
-};
+}; 
+

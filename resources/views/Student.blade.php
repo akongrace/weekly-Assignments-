@@ -28,10 +28,10 @@
     @foreach ($data as $student)
 
     <tr>
-      <th scope="row"><?php echo $i ?></th>
+      <th scope="row"><?php echo $i ?></th><br><br>
       <td>{{ $student["name"] }}</td>
       <td>{{ $student["nim"] }}</td>
-      <td>{{ $student["Major"] }}</td>
+      <td>{{ $student["study program"] }}</td>
       <td>{{ $student["email"] }}</td>
       <td>{{ $student["nohp"] }}</td>
       <td>
@@ -40,6 +40,7 @@
       </td>
       <?php $i++ ?>
     </tr>
+    
     @endforeach
     
   </tbody>

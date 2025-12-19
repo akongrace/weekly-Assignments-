@@ -10,7 +10,7 @@ class StudentController extends Controller
     public function index ()
     {
 
-        $data = Student::all();
+        $data=Student::all();
         
         return view('Student', compact('data'), [
             "title" => " Student Data ",
@@ -26,34 +26,47 @@ class StudentController extends Controller
     }
 
     public function insertdata(Request $request)
-    {
-        /// insert data to data
-        Student::create($request -> all());
+{
+    $validated = $request->validate([
+        'name' => 'required',
+        'nim' => 'required',
+        'studey_program' => 'required',
+        'email' => 'required|email',
+        'no_hp' => 'required'
+    ]);
 
-        return redirect()->route('student')->with('success', 'Data successfully added!');
-    }
+    Student::create($validated);
+
+    return redirect()->route('student')->with('success', 'Data successfully added!');
+}
+
 
     public function edit($id)
     {
-        $student = Student::findOrFail($id);
-        return view('editstudent', compact('student'));
+        $data =student::find($id);
+
+        return view('editstudent', compact('data'), [
+            "title" => "Edit Student Data",
+        ]);
+
     }
 
     public function update(Request $request, $id)
     {
-        $student = Student::findOrFail($id);
+        $data  = Student::find($id);
 
-        $request->validate ([
-            'no' => 'required',
-            'name' => 'required',
-            'nim' => 'required|unique:students,nim,'.$id,
-            'major' => 'required',
-            'email' => 'required|email',
-            'no_hp' => 'required',
-        ]);
 
-        $student->update($request->all());
+        $data->update($request->all());
 
-        return redirect()->route('students.index')->with('success', 'Student updated successfully!');
+        return redirect()->route('student')->with('success', 'Student updated successfully!');
+    }
+
+    public function deletedata($id)
+    {
+        Student ::where('id', $id)->delete();
+       
+
+        return redirect()->back()->with('success', 'Data deleted successfully!');
     }
 }
+

@@ -11,10 +11,9 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('no')->unique();
             $table->string('nim')->unique();
             $table->string('email')->unique();
-            $table->string('Major');
+            $table->string('studeny_program');
             $table->string('no_hp');
             $table->timestamps();
         });
