@@ -10,16 +10,16 @@ class NewsController extends Controller
 {
     public function index()
     {
-        return view('news',[
-            "title" => "news",
-            "newss"=> news::collectdata(),
+      $news = [
+        'slug' => 'Laravel-Journey',
+        'title' => 'Learning Laravel: A Journey into Web Development',
+        'content' => 'Learn Laravel step by step with practical examples and projects',
+        'author' => 'Gracie',
+        'date' => '2024-01-01',
+      ];
+    
+        return view('news', compact('news'), [
+            'title' => 'News Page',
         ]);
-    }
-    public function showdata($slug)
-    {
-        return view('singlenews',[
-            "title" => "news details",
-            "singlenews"=> news::finddata($slug),
-        ]);
-    }
+        }
 }

@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ $title }}</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@yield('title', 'MyWebsite')</title>
+
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
-  <header>
+
+<header>
     <h1>MyWebsite</h1>
     <nav>
-      <ul>
-        <li><a href="/">home</a></li>
-        <li><a href="/news">news</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/student">Student</a></li>
-      </ul>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/news">News</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/student">Student</a></li>
+        </ul>
     </nav>
-  </header>
+</header>
 
-  @yield('content')
+<main>
+    @yield('content')
+</main>
 
-  <footer>
+<footer>
     <p>&copy; 2025 MyWebsite. All rights reserved.</p>
-  </footer>
+</footer>
+
 </body>
 </html>

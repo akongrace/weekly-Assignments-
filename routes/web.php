@@ -1,58 +1,89 @@
 <?php
 
-use App\Models\News;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\NewsController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\NewsController;
 
 
-Route::get('/', function () {
-    return view('home', [
-        "title" => 'Home',
-        "welcome_message" => "welcome to my space on the web"
-    ]);
-});
 
-Route::get('/profile', function () {
-    return view('profile', [
-        "title" => 'profile',
-        'name' => 'code slayer',
-        'studentid' => '134002001',
-        'major' => 'information Technology'
-    ]);
-});
+   Route::get('/', function () {
+    return view('home');
+   })->name('home');
 
-Route::get('/contact', function () {
+    Route::get('/news', function () {
+    $news = [
+        [
+            'slug' => 'laravel-journey',
+            'title' => 'Learning Laravel: A Journey into Web Development',
+            'content' => 'Laravel is powerful but emotionally demanding.',
+            'author' => 'Gracie',
+            'date' => '2025-01-08',
+        ],
+        [
+            'slug' => 'Debugging-hell',
+            'title' => 'Debugging Reality: Tales from the Trenches',
+            'content' => 'If it works, don\'t touch it. If it doesn\'t, prepare for a wild ride or cry a little.',
+            'author' => 'Akon',
+            'date' => '2025-02-15',
+        ],
+        [
+            'slug' => 'Web-Dev-Trends-2025',
+            'title' => 'Top Web Development Trends to Watch in 2025',
+            'content' => 'From AI integration to immersive experiences, 2025 is set to redefine the web landscape.',
+            'author' => 'Sia',
+            'date' => '2025-03-22',
+        ],
+    ];
+
+    return view('news', compact('news'));
+     })->name('news');
+
+    Route::get('/contact', function () {
     return view('contact', [
-        "title" => 'contact',
-        'address' => 'jalan coffee shop,jakarta',
-        'email' => 'slayer@gmail.com',
-        'phone' => '089944887766',
+        'email' => 'Hello@mywebsite.com',
+        'phone' => '+6223-456-7890',
+        'address' => 'Jaranguda Street, No. 123, Jakarta, Indonesia',
     ]);
+    })->name('contact');
+
+
+    Route::middleware(['auth'])->group(function () {
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+Route::get('/student', [StudentController::class, 'index'])
+    ->name('student.index');
+
+Route::get('/student/create', [StudentController::class, 'create'])
+    ->name('student.create');
+
+Route::post('/student', [StudentController::class, 'store'])
+    ->name('student.store');
+
+Route::get('/student/{student}/edit', [StudentController::class, 'edit'])
+    ->name('student.edit');
+
+Route::put('/student/{student}', [StudentController::class, 'update'])
+    ->name('student.update');
+
+Route::delete('/student/{student}', [StudentController::class, 'destroy'])
+    ->name('student.destroy');
+
+Route::get('/profile', [ProfileController::class, 'edit'])
+    ->name('profile.edit');
+
+Route::patch('/profile', [ProfileController::class, 'update'])
+    ->name('profile.update');
+
+Route::delete('/profile', [ProfileController::class, 'destroy'])
+    ->name('profile.destroy');
+Route::get('/profile', [ProfileController::class, 'edit'])
+    ->middleware('auth')
+    ->name('profile.edit');
+
 });
 
-
-
-Route::get('/news', [NewsController::class, 'index']);
-Route::get('/news/{slug}', [NewsController::class, 'showdata']);
-
-Route::middleware(['auth'])->group(function () {
-
-    Route::get('/student', [StudentController::class, 'index'])->name('student');
-    Route::get('/addstudent', [StudentController::class, 'addstudent'])->name('addstudent');
-    Route::post('/insertdata', [StudentController::class, 'insertdata'])->name('insertdata');
-    Route::get('/editstudent/{id}', [StudentController::class, 'edit'])->name('editstudent');
-    Route::post('/updatedata/{id}', [StudentController::class, 'update'])->name('updatedata');
-    Route::get('/deletedata/{id}', [StudentController::class, 'deletedata'])->name('deletedata');
-
-});
-
-
-Route::get('/welcome', function () {
-    return view('welcome', [
-        "title" => "welcome",
-        "name" => "Musa",
-        "age" => "28",
-        "hobbies" => ["reading","football","modelling","travelling"]
-    ]);
-});
+require __DIR__.'/auth.php';

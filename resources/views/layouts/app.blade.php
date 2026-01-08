@@ -1,31 +1,36 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{$title}}</title>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  {{-- Link CSS --}}
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
-<body>
-  <header>
-    <nav>
-      <ul class="navbar">
-        <li><a href="{{ url('/') }}">Home</a></li>
-        <li><a href="{{ url('/profile') }}">Profile</a></li>
-        <li><a href="{{ url('/news') }}">News</a></li>
-        <li><a href="{{ url('/contact') }}">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+        <title>{{ config('app.name', 'Laravel') }}</title>
 
-  <main class="container">
-    @yield('content')
-  </main>
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-  <footer>
-    <p>&copy; {{ date('Y') }} Akon Grace. All rights reserved.</p>
-  </footer>
-</body>
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    </head>
+    <body class="font-sans antialiased">
+        <div class="min-h-screen bg-gray-100">
+            @include('layouts.navigation')
+
+            <!-- Page Heading -->
+            @if (isset($header))
+                <header class="bg-white shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endif
+
+            <!-- Page Content -->
+            <main>
+               @yield('content')
+            </main>
+        </div>
+    </body>
 </html>

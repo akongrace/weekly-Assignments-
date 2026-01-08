@@ -1,53 +1,55 @@
-@extends ('layouts.main')
+@extends('layouts.main')
 
 @section('content')
+
 <h1 class="text-center">Student Data</h1>
-  <div class="row mt-4">
-  <a href="/addstudent">
-  <button type="button" class="btn btn-success mb-2">Add Data</button><br>
-  </a>
-  @if ($message = Session::get('success'))
-    <div class="alert alert-success" role="alert">
-      {{ $message }}
-    </div>
-  @endif
-  <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">No</th>
-      <th scope="col">Name</th>
-      <th scope="col">NIM</th>
-      <th scope="col">Major</th>
-      <th scope="col">Email</th>
-      <th scope="col">No. HP</th>
-      <th scope="col">Access</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php $i=1 ?> 
-    @foreach ($data as $student)
 
-    <tr>
-      <th scope="row"><?php echo $i ?></th><br><br>
-      <td>{{ $student["name"] }}</td>
-      <td>{{ $student["nim"] }}</td>
-      <td>{{ $student["study program"] }}</td>
-      <td>{{ $student["email"] }}</td>
-      <td>{{ $student["nohp"] }}</td>
-      <td>
-        <button type="button" class="btn btn-primary">Edit</button>
-        <button type="button" class="btn btn-danger">Delete</button>
-      </td>
-      <?php $i++ ?>
-    </tr>
-    
-    @endforeach
-    
-  </tbody>
-</table>
+<div class="row mt-4">
 
+    <a href="{{ route('student.create') }}" class="btn btn-success mb-3">
+        Add Student
+    </a>
 
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success')}}
+        </div>
+    @endif
 
-  </div>
-  
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>NIM</th>
+                <th>Major</th>
+                <th>Email</th>
+                <th>No. HP</th>
+                <th>Access</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @php $i = 1; @endphp
+
+            @foreach ($students as $student)
+                <tr>
+                    <td>{{ $i++ }}</td>
+                    <td>{{ $student->name }}</td>
+                    <td>{{ $student->nim }}</td>
+                    <td>{{ $student->study_program }}</td>
+                    <td>{{ $student->email }}</td>
+                    <td>{{ $student->phone }}</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm">Edit</button>
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                </tr>
+            @endforeach
+
+        </tbody>
+    </table>
+
+</div>
+
 @endsection

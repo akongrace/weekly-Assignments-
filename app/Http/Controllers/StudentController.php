@@ -2,79 +2,66 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Student;
+use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    public function index ()
+    public function index()
     {
-
-        $data=Student::all();
-        
-        return view('Student', compact('data'), [
-            "title" => " Student Data ",
-            
-        ]);
+        $students = Student::all();
+        return view('student', compact('students'));
     }
 
-    public function addstudent ()
+    public function create()
     {
         return view('addstudent', [
-            "title" => "Add student Data",
+            'title' => 'Add Student Data'
         ]);
     }
 
-    public function insertdata(Request $request)
-{
-    $validated = $request->validate([
-        'name' => 'required',
-        'nim' => 'required',
-        'study_program' => 'required',
-        'email' => 'required|email',
-        'no_hp' => 'required'
-    ]);
-
-    Student::create($validated);
-
-    return redirect()->route('student')->with('success', 'Data successfully added!');
-}
-
-
-    public function edit($id)
+    public function store(Request $request)
     {
-$data = Student::find($id);
-
-        return view('editstudent', compact('data'), [
-            "title" => "Edit Student Data",
-        ]);
-
-    }
-
-    public function update(Request $request, $id)
-    {
-        $data = Student::findorfail($id);
-
         $validated = $request->validate([
             'name' => 'required',
             'nim' => 'required',
             'study_program' => 'required',
             'email' => 'required|email',
-            'no_hp' => 'required'
+            'phone' => 'required',
         ]);
 
+        Student::create($validated);
 
-        $data->update($validated);
-
-        return redirect()->route('student')->with('success', 'Student updated successfully!');
+        return redirect()->route('student.index')
+            ->with('success', 'Student added successfully!');
     }
 
-    public function deletedata($id)
+    public function edit(Student $student)
     {
-        Student ::where('id', $id)->delete();
-       
+        return view('editstudent', compact('student'));
+    }
 
-        return redirect()->back()->with('success', 'Data deleted successfully!');
+    public function update(Request $request, Student $student)
+    {
+        $validated = $request->validate([
+            'name' => 'required',
+            'nim' => 'required',
+            'study_program' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+        ]);
+
+        $student->update($validated);
+
+        return redirect()->route('student.index')
+            ->with('success', 'Student updated successfully!');
+    }
+
+    public function destroy(Student $student)
+    {
+        $student->delete();
+
+        return redirect()->route('student.index')
+            ->with('success', 'Student deleted successfully!');
     }
 }
-

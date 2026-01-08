@@ -4,7 +4,7 @@
     <h1>add student Data</h1>
     <div class="card">
         <div class="card-body bg-ocean">
-    <form action="/insertdata" method="POST" enctype="multipart/form-data">
+    <form action="{{route('student.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Name:</label>

@@ -5,7 +5,7 @@
 @section('content')
   <h1>Let’s Get in Touch (aka Connect!)</h1>
   <p>
-    Don’t be shy — I would love to hear from you! Here are a few ways to reach out to me:
+    Don’t be shy aye I would love to hear from you! Here are a few ways to reach out to me:
   </p>
   <ul>
     <li><strong>Email:</strong> {{$email}}</li>

@@ -12,9 +12,10 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('nim')->unique();
-            $table->string('study_program');
+            $table->string('nim')->nullable();
+            $table->string('study_program')->nullable();
             $table->string('email')->unique();
+            $table->string('password');//required for authentication
             $table->string('no_hp') ->nullable();
             $table->timestamps();
         });
