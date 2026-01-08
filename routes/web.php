@@ -36,12 +36,16 @@ Route::get('/contact', function () {
 Route::get('/news', [NewsController::class, 'index']);
 Route::get('/news/{slug}', [NewsController::class, 'showdata']);
 
-Route::get('/student', [StudentController::class, 'index'])->name('student');
-Route::get('/addstudent', [StudentController::class, 'addstudent'])->name('addstudent');
-Route::post('/insertdata', [StudentController::class, 'insertdata'])->name('insertdata');
-Route::get('/editstudent/{id}', [StudentController::class, 'edit'])->name('editstudent');
-Route::post('/updatedata/{id}', [StudentController::class, 'update'])->name('updatedata');
-Route::get('/deletedata/{id}', [StudentController::class, 'delete'])->name('deletedata');
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/student', [StudentController::class, 'index'])->name('student');
+    Route::get('/addstudent', [StudentController::class, 'addstudent'])->name('addstudent');
+    Route::post('/insertdata', [StudentController::class, 'insertdata'])->name('insertdata');
+    Route::get('/editstudent/{id}', [StudentController::class, 'edit'])->name('editstudent');
+    Route::post('/updatedata/{id}', [StudentController::class, 'update'])->name('updatedata');
+    Route::get('/deletedata/{id}', [StudentController::class, 'deletedata'])->name('deletedata');
+
+});
 
 
 Route::get('/welcome', function () {

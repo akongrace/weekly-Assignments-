@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('nim')->unique();
             $table->string('email')->unique();
-            $table->string('studeny_program');
+            $table->string('study_program');
             $table->string('no_hp');
             $table->timestamps();
         });

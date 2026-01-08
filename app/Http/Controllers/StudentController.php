@@ -30,7 +30,7 @@ class StudentController extends Controller
     $validated = $request->validate([
         'name' => 'required',
         'nim' => 'required',
-        'studey_program' => 'required',
+        'study_program' => 'required',
         'email' => 'required|email',
         'no_hp' => 'required'
     ]);
@@ -43,7 +43,7 @@ class StudentController extends Controller
 
     public function edit($id)
     {
-        $data =student::find($id);
+$data = Student::find($id);
 
         return view('editstudent', compact('data'), [
             "title" => "Edit Student Data",
@@ -53,10 +53,18 @@ class StudentController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data  = Student::find($id);
+        $data = Student::findorfail($id);
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'nim' => 'required',
+            'study_program' => 'required',
+            'email' => 'required|email',
+            'no_hp' => 'required'
+        ]);
 
 
-        $data->update($request->all());
+        $data->update($validated);
 
         return redirect()->route('student')->with('success', 'Student updated successfully!');
     }
